@@ -1,6 +1,6 @@
 {
   "name": "ali-img",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "阿里云图片处理服务sdk",
   "main": "index.js",
   "scripts": {},
