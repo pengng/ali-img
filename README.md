@@ -21,7 +21,12 @@ npm i -S ali-img
 - [roundedCorners 圆角矩形](#roundedcorners)
 - [autoOrient 自适应方向](autoorient)
 - [rotate 旋转](#rotate)
+- [blur 模糊效果](#blur)
+- [bright 调整图片亮度](#bright)
+- [contrast 调整图片对比度](#contrast)
+- [sharpen 锐化图片](#sharpen)
 - [format 图片输出格式](#format)
+- [interlace 渐进显示](#interlace)
 - [watermark 打上图片水印](#watermark)
 - [drawText 绘制文字](#drawtext)
 - [fill 设置填充颜色](#fill)
@@ -157,6 +162,85 @@ npm i -S ali-img
 
 > - 旋转图片可能会导致图片的尺寸变大。
 > - 旋转对图片的尺寸有限制，图片的宽或者高不能超过 4096。
+
+### blur
+
+可以对图片进行模糊操作。
+
+`blur(radius, standard)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| radius | number | 是 | 模糊半径。取值[1,50]<br/>r 越大图片越模糊。 |
+| standard | number | 是 | 正态分布的标准差。取值[1,50]<br/>s 越大图片越模糊。 |
+
+### bright
+
+可以对处理后的图片进行亮度调节。
+
+`bright(value)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 亮度调整。0 表示原图亮度，小于 0 表示低于原图亮度，大于 0 表示高于原图亮度。取值[-100, 100] |
+
+### contrast
+
+可以对处理后的图片进行对比度调节。
+
+`contrast(value)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 对比度调整。0 表示原图对比度，小于 0 表示低于原图对比度，大于 0 表示高于原图对比度。取值[-100, 100] |
+
+### sharpen
+
+可以对处理后的图片进行锐化，使图片变得清晰。
+
+`sharpen(value)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 表示进行锐化处理。取值为锐化参数，参数越大，越清晰。取值[50, 399]。为达到较优效果，推荐取值为 100。 |
+
+### format
+
+可以将图片转换成对应格式(jpg, png, bmp, webp，gif)。 默认不填格式，是按原图格式返回。
+
+`format(value)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| value | string | 是 | 指定输出的图片格式，可选`jpg`,`png`,`bmp`,`webp`,`gif` |
+
+### interlace
+
+图片格式为 jpg 时有两种呈现方式：
+- 自上而下的扫描式
+- 先模糊后逐渐清晰（在网络环境比较差时明显）
+
+默认保存为第一种，如果要指定先模糊后清晰的呈现方式，请使用渐进显示参数。
+
+`interlace(value)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| value | number | 是 | 1 表示保存成渐进显示的 jpg 格式<br/>0 表示保存成普通的 jpg 格式 |
+
+> 注意：此参数只有当效果图是 jpg 格式时才有意义 。
 
 ### watermark
 
