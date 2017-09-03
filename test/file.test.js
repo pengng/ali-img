@@ -1,25 +1,12 @@
 
-const FileCloud = require('../lib/file')
-const { AliImage } = FileCloud
+const AliImg = require('../lib/file')
 
-const fileCloud = new FileCloud({
-  region: '',
-  bucket: '',
-  accessKeyId: '',
-  accessKeySecret: ''
+const img = new AliImg({
+  region: 'oss-cn-shenzhen',
+  bucket: 'staticcc',
+  accessKeyId: 'LTAIrREO4DyvMWqr',
+  accessKeySecret: 'uGtgrYjaJjGpZKjKjAR8qwVqeS6Zux'
 })
 
-const markImage = new AliImage('article/img/15005444701702203.png')
-const image = new AliImage('article/img/15005444701987303.png')
-markImage.resize(100, 100).circle(100)
-image
-  .watermark(100, 100, markImage, {
-    position: 'nw'
-  })
-  .resize(800, 800)
-  .circle(800)
-  .drawText(100, 100, 'Hello')
-  .format('png')
-
-const url = fileCloud.getUrl(image)
+const url = img('article/img/15005444701702203.png').drawText(100, 100, '测试').format('png').resize(400, 400).getUrl()
 console.log(url)

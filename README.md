@@ -9,7 +9,17 @@ npm i -S ali-img
 ```
 
 ```javascript
+const AliImg = require('ali-img')
 
+const img = new AliImg({
+  region: '',
+  bucket: '',
+  accessKeyId: '',
+  accessKeySecret: ''
+})
+
+const url = img('test.png').drawText(100, 100, '测试').format('png').resize(400, 400).getUrl()
+console.log(url)
 ```
 
 ### Img 实例方法
