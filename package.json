@@ -1,25 +1,25 @@
 {
   "name": "ali-img",
-  "version": "0.0.3",
-  "description": "阿里云图片处理服务sdk",
+  "version": "0.0.4",
+  "description": "阿里云图片处理sdk",
   "main": "index.js",
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pengng/ali-image.git"
+    "url": "git+https://github.com/pengng/ali-img.git"
   },
   "keywords": [
-    "ali",
+    "aliyun",
     "image",
-    "watermark",
+    "processing",
     "sdk"
   ],
   "author": "yupeng.kuo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pengng/ali-image/issues"
+    "url": "https://github.com/pengng/ali-img/issues"
   },
-  "homepage": "https://github.com/pengng/ali-image#readme",
+  "homepage": "https://github.com/pengng/ali-img#readme",
   "dependencies": {
     "ali-oss": "^4.10.1",
     "request": "^2.81.0"
