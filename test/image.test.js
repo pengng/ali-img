@@ -1,5 +1,5 @@
 const assert = require('assert')
-const AliImage = require('../lib/image')
+const AliImage = require('../lib/img')
 
 describe('test image.js', () => {
   it('test toString()', () => {

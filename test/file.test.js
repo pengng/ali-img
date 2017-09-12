@@ -1,4 +1,4 @@
-
+const assert = require('assert')
 const AliImg = require('../lib/file')
 
 const img = new AliImg({
@@ -8,5 +8,9 @@ const img = new AliImg({
   accessKeySecret: 'uGtgrYjaJjGpZKjKjAR8qwVqeS6Zux'
 })
 
-const url = img('article/img/15005444701702203.png').drawText(100, 100, '测试').format('png').resize(400, 400).getUrl()
-console.log(url)
+describe('test lib/file.js', function () {
+  it('test getMD5()', function () {
+    const md5str = img.getMD5('Hello World')
+    assert.equal(md5str, 'sQqNsWTgdUEFt6mb5y4/5Q==')
+  })
+})
