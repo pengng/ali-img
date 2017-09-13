@@ -13,4 +13,13 @@ describe('test lib/file.js', function () {
     const md5str = img.getMD5('Hello World')
     assert.equal(md5str, 'sQqNsWTgdUEFt6mb5y4/5Q==')
   })
+  it('test getObject()', function (done) {
+    img.getObject('google.png', function (err, response, body) {
+      if (err) {
+        return console.error(err)
+      }
+      console.log(body)
+      done()
+    })
+  })
 })
