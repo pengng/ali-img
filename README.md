@@ -27,7 +27,8 @@ console.log(url)
 - [resize 调整尺寸大小](#resize)
 - [circle 内切圆](#circle)
 - [crop 裁剪](#crop)
-- [indexCrop 索引切割](#indexcrop)
+- [indexCropX 索引切割(横向)](#indexcropx)
+- [indexCropY 索引切割(纵向)](#indexcropy)
 - [roundedCorners 圆角矩形](#roundedcorners)
 - [autoOrient 自适应方向](autoorient)
 - [rotate 旋转](#rotate)
@@ -110,18 +111,30 @@ console.log(url)
 
 > 如果指定的起始横纵坐标大于原图，将会返回错误：BadRequest, 错误内容是：Advance cut’s position is out of image. <br/>如果从起点开始指定的宽度和高度超过了原图，将会直接裁剪到原图结尾。
 
-### indexCrop
+### indexCropX
 
-索引切割。将图片分成 x，y 轴，按指定长度 (length) 切割，指定索引 (index)，取出指定的区域。
+索引切割（横向）。将图片分成 x 轴，按指定长度 (length) 切割，指定索引 (index)，取出指定的区域。
 
-`indexCrop(x, y, index)`
+`indexCropX(width, index)`
 
 ### 参数
 
 | 名称 | 类型 | 必填 | 描述 |
 | --- | --- | --- | --- |
-| x | number | 特殊否 | 进行水平切割，每块图片的长度。x 参数与 y 参数只能任选其一。 |
-| y | number | 特殊否 | 进行垂直切割，每块图片的长度。x 参数与 y 参数只能任选其一。 |
+| width | number | 是 | 进行水平切割，每块图片的宽度。 |
+| index | number | 是 | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
+
+### indexCropY
+
+索引切割（纵向）。将图片分成 y 轴，按指定长度 (length) 切割，指定索引 (index)，取出指定的区域。
+
+`indexCropY(height, index)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| height | number | 是 | 进行垂直切割，每块图片的高度。 |
 | index | number | 是 | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
 
 ### roundedCorners
