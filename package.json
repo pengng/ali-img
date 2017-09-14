@@ -1,7 +1,7 @@
 {
   "name": "ali-img",
-  "version": "0.0.4",
-  "description": "阿里云图片处理sdk",
+  "version": "1.0.0",
+  "description": "Ali cloud image processing tool package",
   "main": "index.js",
   "scripts": {},
   "repository": {
@@ -12,7 +12,7 @@
     "aliyun",
     "image",
     "processing",
-    "sdk"
+    "too"
   ],
   "author": "yupeng.kuo",
   "license": "ISC",
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/pengng/ali-img#readme",
   "dependencies": {
-    "ali-oss": "^4.10.1",
     "async": "^2.5.0",
     "mime": "^2.0.0",
     "request": "^2.81.0"

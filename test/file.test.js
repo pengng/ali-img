@@ -22,10 +22,21 @@ describe('test lib/file.js', function () {
   //     done()
   //   })
   // })
-  it('test putObject()', function (done) {
-    img.putObjectFromUrl('http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLmnGMszeibYjRDarwbbSErz3oTQZ7PJLVCzIBBA1NwoONXjf5wIVOl223iaTia9BVQkLrCOL6IGk42Q/0', 'google4.png', function (err, response, body) {
-      console.log(arguments)
-      done()
-    })
+  // it('test putObject()', function (done) {
+  //   img.putObjectFromUrl('http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLmnGMszeibYjRDarwbbSErz3oTQZ7PJLVCzIBBA1NwoONXjf5wIVOl223iaTia9BVQkLrCOL6IGk42Q/0', 'google4.png', function (err, response, body) {
+  //     console.log(arguments)
+  //     done()
+  //   })
+  // })
+  it('test Img()', function (done) {
+    const url = 'http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLmnGMszeibYjRDarwbbSErz3oTQZ7PJLVCzIBBA1NwoONXjf5wIVOl223iaTia9BVQkLrCOL6IGk42Q/0'
+    img(url)
+      .circle(1000)
+      .format('png')
+      .write('lib/6.png', (err) => {
+        console.log(err)
+        console.log('success')
+        done()
+      })
   })
 })
