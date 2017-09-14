@@ -1,6 +1,6 @@
 # ali-img
 
-阿里云图片处理工具包
+Ali cloud image processing tool package
 
 ### Usage
 
@@ -9,6 +9,7 @@ npm i -S ali-img
 ```
 
 ```javascript
+const fs = require('fs')
 const AliImg = require('ali-img')
 
 const img = new AliImg({
@@ -18,8 +19,13 @@ const img = new AliImg({
   accessKeySecret: ''
 })
 
-const url = img('test.png').drawText(100, 100, '测试').format('png').resize(400, 400).getUrl()
-console.log(url)
+img('test.png')
+  .drawText(100, 100, '测试')
+  .format('png')
+  .resize(400, 400)
+  .stream()
+  .pipe(fs.createWriteStream('save.png'))
+
 ```
 
 ### Img 实例方法
