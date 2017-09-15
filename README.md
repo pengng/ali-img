@@ -13,10 +13,10 @@ const fs = require('fs')
 const AliImg = require('ali-img')
 
 const img = new AliImg({
-  region: '',
-  bucket: '',
   accessKeyId: '',
-  accessKeySecret: ''
+  accessKeySecret: '',
+  region: '',
+  bucket: ''
 })
 
 img('test.png')
@@ -28,32 +28,48 @@ img('test.png')
 
 ```
 
+## img 工厂方法
+
+可传入`本地图片`或`网络图片`路径，返回`Img`实例。
+
+```javascript
+const localImg = img('/path/to/resource.png')
+const networkImg = img('https://path/to/resource.png')
+```
+
 ### Img 实例方法
 
-- [resize 调整尺寸大小](#resize)
-- [circle 内切圆](#circle)
-- [crop 裁剪](#crop)
-- [indexCropX 索引切割(横向)](#indexcropx)
-- [indexCropY 索引切割(纵向)](#indexcropy)
-- [roundedCorners 圆角矩形](#roundedcorners)
-- [autoOrient 自适应方向](autoorient)
-- [rotate 旋转](#rotate)
-- [blur 模糊效果](#blur)
-- [bright 调整图片亮度](#bright)
-- [contrast 调整图片对比度](#contrast)
-- [sharpen 锐化图片](#sharpen)
-- [format 图片输出格式](#format)
-- [interlace 渐进显示](#interlace)
-- [quality 质量变换](#quality)
-- [absoluteQuality 质量变换(绝对)](#absolutequality)
-- [watermark 打上图片水印](#watermark)
-- [drawText 绘制文字](#drawtext)
-- [fill 设置填充颜色](#fill)
-- [font 设置文字字体](#font)
-- [fontSize 设置文字大小](#fontsize)
-- [stream 返回图片流](#stream)
-- [toBuffer 取得图片Buffer对象](#tobuffer)
-- [write 写入本地文件](#write)
+- 图片缩放
+  - [resize 图片缩放](#resize)
+- 图片裁剪
+  - [circle 内切圆](#circle)
+  - [crop 裁剪](#crop)
+  - [indexCropX 索引切割(横向)](#indexcropx)
+  - [indexCropY 索引切割(纵向)](#indexcropy)
+  - [roundedCorners 圆角矩形](#roundedcorners)
+- 图片旋转
+  - [autoOrient 自适应方向](autoorient)
+  - [rotate 旋转](#rotate)
+- 图片效果
+  - [blur 模糊效果](#blur)
+  - [bright 亮度](#bright)
+  - [contrast 对比度](#contrast)
+  - [sharpen 锐化](#sharpen)
+- 格式转换
+  - [format 格式转换](#format)
+  - [interlace 渐进显示](#interlace)
+  - [quality 质量变换(相对)](#quality)
+  - [absoluteQuality 质量变换(绝对)](#absolutequality)
+- 图片水印
+  - [watermark 图片水印](#watermark)
+  - [drawText 绘制文字](#drawtext)
+  - [fill 填充颜色](#fill)
+  - [font 文字字体](#font)
+  - [fontSize 文字大小](#fontsize)
+- 生成
+  - [stream 返回图片流](#stream)
+  - [toBuffer 取得图片Buffer对象](#tobuffer)
+  - [write 写入本地文件](#write)
 
 ### resize
 
