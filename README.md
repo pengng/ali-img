@@ -48,7 +48,7 @@ const networkImg = img('https://path/to/resource.png')
   - [indexCropY 索引切割(纵向)](#indexcropy)
   - [roundedCorners 圆角矩形](#roundedcorners)
 - 图片旋转
-  - [autoOrient 自适应方向](autoorient)
+  - [autoOrient 自适应方向](#autoorient)
   - [rotate 旋转](#rotate)
 - 图片效果
   - [blur 模糊效果](#blur)
