@@ -51,6 +51,9 @@ img('test.png')
 - [fill 设置填充颜色](#fill)
 - [font 设置文字字体](#font)
 - [fontSize 设置文字大小](#fontsize)
+- [stream 返回图片流](#stream)
+- [toBuffer 取得图片Buffer对象](#tobuffer)
+- [write 写入本地文件](#write)
 
 ### resize
 
@@ -398,3 +401,43 @@ img('test.png')
 | 名称 | 类型 | 必填 | 描述 |
 | --- | --- | --- | --- |
 | size | number | 是 | 参数意义：文字水印文字大小(px) <br/>取值范围：(0，1000] <br/>默认值：40 |
+
+### stream
+
+获取图片流
+
+`stream()`
+
+返回图片流
+
+### toBuffer
+
+获取图片Buffer
+
+`toBuffer(callback)`
+
+### 回调函数内参数
+
+| 名称 | 类型 | 描述 |
+| --- | --- | --- |
+| err | object | 错误对象 |
+| buffers | buffer | 图片buffer数据 |
+
+### write
+
+写入本地文件
+
+`write(fullpath, callback)`
+
+### 参数
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| fullpath | string | 是 | 写入路径 |
+| callback | function | 是 | 回调函数 |
+
+### 回调函数内参数
+
+| 名称 | 类型 | 描述 |
+| --- | --- | --- |
+| err | object | 错误对象 |
