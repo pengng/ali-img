@@ -28,6 +28,21 @@ img('test.png')
 
 ```
 
+### AliImg 构造函数
+
+传入配置对象，返回 `Img` 工厂方法。
+
+`new AliImg(options)`
+
+### options 对象属性
+
+| 名称 | 类型 | 必填 | 描述 |
+| --- | --- | --- | --- |
+| accessKeyId | string | 是 | 阿里云账户accessKeyId |
+| accessKeySecret | string | 是 | 阿里云账户accessKeySecret |
+| region | string | 是 | oss bucket 所属区域。 |
+| bucket | string | 是 | oss bucket 名称。 |
+
 ## img 工厂方法
 
 可传入`本地图片`或`网络图片`路径，返回`Img`实例。

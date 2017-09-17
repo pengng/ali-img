@@ -1,6 +1,6 @@
 {
   "name": "ali-img",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Ali cloud image processing tool package",
   "main": "index.js",
   "scripts": {},
