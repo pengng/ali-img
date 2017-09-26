@@ -254,7 +254,7 @@ img('/path/to/img.png')
   .format('png')
   .stream()
   .pipe(
-  	require('fs').createWriteStream('/paht/to/save.png')
+    require('fs').createWriteStream('/paht/to/save.png')
   )
 ```
 
@@ -398,7 +398,7 @@ img('/path/to/img.png')
 ```javascript
 img('/path/to/background.png')
   .watermask( null, 200,
-  	img('/path/to/headimg.jpg')
+    img('/path/to/headimg.jpg')
       .resize(200, 200)
       .circle(200), { position: 'center'}  
   )
@@ -484,7 +484,7 @@ img('/path/to/img.png')
   .drawText(null, null, '鹏', { position: 'center' })
   .stream()
   .pipe(
-	require('fs').createWriteStream('/path/to/save.png')
+	  require('fs').createWriteStream('/path/to/save.png')
   )
 ```
 
@@ -533,7 +533,7 @@ app.get('/images/test.png', (req, res) => {
 img('/path/to/img.png')
   .resize(400, 400)
   .toBuffer((err, chunks) => {
-  	if (err) {
+    if (err) {
       return console.error(err)
     }
     require('fs').writeFileSync('/path/to/save.png', chunks)
@@ -564,6 +564,6 @@ img('/path/to/img.png')
   .format('jpg')
   .quality(50)
   .write('/path/to/compress.jpg', err => {
-  	if (!err) console.log('success')  
+    if (!err) console.log('success')  
   })
 ```
