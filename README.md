@@ -5,7 +5,7 @@ Ali cloud image processing tool package
 ### Usage
 
 ```bash
-npm i -S ali-img
+npm i ali-img -S
 ```
 
 ```javascript
@@ -36,12 +36,12 @@ img('test.png')
 
 ### options 对象属性
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| accessKeyId | string | 是 | 阿里云账户accessKeyId |
-| accessKeySecret | string | 是 | 阿里云账户accessKeySecret |
-| region | string | 是 | oss bucket 所属区域。 |
-| bucket | string | 是 | oss bucket 名称。 |
+| 名称              | 类型     | 必填   | 描述                   |
+| --------------- | ------ | ---- | -------------------- |
+| accessKeyId     | string | 是    | 阿里云账户accessKeyId     |
+| accessKeySecret | string | 是    | 阿里云账户accessKeySecret |
+| region          | string | 是    | oss bucket 所属区域。     |
+| bucket          | string | 是    | oss bucket 名称。       |
 
 ## img 工厂方法
 
@@ -94,19 +94,19 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| width | number & null | 是 | 图片宽度 |
-| height | number & null | 是 | 图片高度 |
-| options | object | 否 | 其他选项 |
+| 名称      | 类型            | 必填   | 描述   |
+| ------- | ------------- | ---- | ---- |
+| width   | number & null | 是    | 图片宽度 |
+| height  | number & null | 是    | 图片高度 |
+| options | object        | 否    | 其他选项 |
 
 ### options 对象属性
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| limit | number | 指定当目标缩略图大于原图时是否处理。<br/>值是 1 表示不处理；值是 0 表示处理。默认是 0 |
-| mode | string | 指定缩略的模式：<br/>- lfit：等比缩放，限制在设定在指定w与h的矩形内的最大图片。<br/>- mfit：等比缩放，延伸出指定w与h的矩形框外的最小图片。<br/>- fill：固定宽高，将延伸出指定w与h的矩形框外的最小图片进行居中裁剪。<br/>- pad：固定宽高，缩略填充。<br/>- fixed：固定宽高，强制缩略 |
-| color | string | 当缩放模式选择为pad（缩略填充）时，可以选择填充的颜色(默认是白色)参数的填写方式：采用16进制颜色码表示，如00FF00（绿色）。|
+| 名称      | 类型     | 描述                                       |
+| ------- | ------ | ---------------------------------------- |
+| limit   | number | 指定当目标缩略图大于原图时是否处理。<br/>值是 1 表示不处理；值是 0 表示处理。默认是 0 |
+| mode    | string | 指定缩略的模式：<br/>- lfit：等比缩放，限制在设定在指定w与h的矩形内的最大图片。<br/>- mfit：等比缩放，延伸出指定w与h的矩形框外的最小图片。<br/>- fill：固定宽高，将延伸出指定w与h的矩形框外的最小图片进行居中裁剪。<br/>- pad：固定宽高，缩略填充。<br/>- fixed：固定宽高，强制缩略 |
+| color   | string | 当缩放模式选择为pad（缩略填充）时，可以选择填充的颜色(默认是白色)参数的填写方式：采用16进制颜色码表示，如00FF00（绿色）。 |
 | percent | number | 倍数百分比。 小于100，即是缩小，大于100即是放大。 此参数存在则覆盖`width`和`height`属性 |
 
 ### circle
@@ -115,14 +115,24 @@ const networkImg = img('https://path/to/resource.png')
 
 `circle(radius)`
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| radius | number | 是 | 从图片取出的圆形区域的半径<br/>半径 r 不能超过原图的最小边的一半。<br/>如果超过，则圆的大小仍然是原圆的最大内切圆。 |
+| 名称     | 类型     | 必填   | 描述                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| radius | number | 是    | 从图片取出的圆形区域的半径<br/>半径 r 不能超过原图的最小边的一半。<br/>如果超过，则圆的大小仍然是原圆的最大内切圆。 |
 
 #### 注意事项
 
 > - 如果图片的最终格式是 png、webp、 bmp 等支持透明通道的图片，那么图片非圆形区域的地方将会以透明填充。<br/>如果图片的最终格式是 jpg，那么非圆形区域是以白色进行填充。推荐保存成 png 格式。
 > - 如果指定半径大于原图最大内切圆的半径，则圆的大小仍然是图片的最大内切圆。
+
+```javascript
+img('/path/to/img.png')
+  .circle(120)
+  .format('png')
+  .stream()
+  .pipe(
+    require('fs').createWriteStream('/path/to/save.png')
+  )
+```
 
 ### crop
 
@@ -132,20 +142,20 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| x | number | 是 | 指定裁剪起点横坐标（默认左上角为原点） |
-| y | number | 是 | 指定裁剪起点纵坐标（默认左上角为原点） |
-| width | number | 是 | 指定裁剪宽度 |
-| height | number | 是 | 指定裁剪高度 |
-| origin | string | 否 | 设置裁剪的原点位置，由九宫格的格式，一共有九个地方可以设置，每个位置位于每个九宫格的左上角 |
+| 名称     | 类型     | 必填   | 描述                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| x      | number | 是    | 指定裁剪起点横坐标（默认左上角为原点）                      |
+| y      | number | 是    | 指定裁剪起点纵坐标（默认左上角为原点）                      |
+| width  | number | 是    | 指定裁剪宽度                                   |
+| height | number | 是    | 指定裁剪高度                                   |
+| origin | string | 否    | 设置裁剪的原点位置，由九宫格的格式，一共有九个地方可以设置，每个位置位于每个九宫格的左上角 |
 
 #### 裁剪原点位置参数示意图：
 
-| nw | north | ne |
-| :---: | :---: | :---: |
+|  nw  | north  |  ne  |
+| :--: | :----: | :--: |
 | west | center | east |
-| sw | south | se |
+|  sw  | south  |  se  |
 
 #### 注意事项
 
@@ -159,10 +169,10 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| width | number | 是 | 进行水平切割，每块图片的宽度。 |
-| index | number | 是 | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
+| 名称    | 类型     | 必填   | 描述                                    |
+| ----- | ------ | ---- | ------------------------------------- |
+| width | number | 是    | 进行水平切割，每块图片的宽度。                       |
+| index | number | 是    | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
 
 ### indexCropY
 
@@ -172,10 +182,10 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| height | number | 是 | 进行垂直切割，每块图片的高度。 |
-| index | number | 是 | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
+| 名称     | 类型     | 必填   | 描述                                    |
+| ------ | ------ | ---- | ------------------------------------- |
+| height | number | 是    | 进行垂直切割，每块图片的高度。                       |
+| index  | number | 是    | 选择切割后第几个块。（0表示第一块）<br/>如果超出最大块数，返回原图。 |
 
 ### roundedCorners
 
@@ -185,14 +195,24 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| radius | number | 是 | 将图片切出圆角，指定圆角的半径。<br/>生成的最大圆角的半径不能超过原图的最小边的一半。 |
+| 名称     | 类型     | 必填   | 描述                                       |
+| ------ | ------ | ---- | ---------------------------------------- |
+| radius | number | 是    | 将图片切出圆角，指定圆角的半径。<br/>生成的最大圆角的半径不能超过原图的最小边的一半。 |
 
 #### 注意事项
 
 > - 如果图片的最终格式是 png、webp、bmp 等支持透明通道的图片，那么图片非圆形区域的地方将会以透明填充。如果图片的最终格式是 jpg， 那么非圆形区域是以白色进行填充 。推荐保存成 png 格式。
 > - 如果指定半径大于原图最大内切圆的半径，则圆角的大小仍然是图片的最大内切圆。
+
+```javascript
+img('/path/to/img.png')
+  .roundedCorners(20)
+  .format('png')
+  .stream()
+  .pipe(
+    require('fs').createWriteStream('/path/to/save.png')
+  )
+```
 
 ### autoOrient
 
@@ -202,9 +222,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 进行自动旋转<br/>0：表示按原图默认方向，不进行自动旋转。<br/>1：先进行图片进行旋转，然后再进行缩略 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 进行自动旋转<br/>0：表示按原图默认方向，不进行自动旋转。<br/>1：先进行图片进行旋转，然后再进行缩略 |
 
 #### 注意事项
 
@@ -219,14 +239,24 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| angle | number | 是 | 图片按顺时针旋转的角度。默认值为 0，表示不旋转。 |
+| 名称    | 类型     | 必填   | 描述                        |
+| ----- | ------ | ---- | ------------------------- |
+| angle | number | 是    | 图片按顺时针旋转的角度。默认值为 0，表示不旋转。 |
 
 #### 注意事项
 
 > - 旋转图片可能会导致图片的尺寸变大。
 > - 旋转对图片的尺寸有限制，图片的宽或者高不能超过 4096。
+
+```javascript
+img('/path/to/img.png')
+  .rotate(90)
+  .format('png')
+  .stream()
+  .pipe(
+  	require('fs').createWriteStream('/paht/to/save.png')
+  )
+```
 
 ### blur
 
@@ -236,10 +266,10 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| radius | number | 是 | 模糊半径。取值[1,50]<br/>r 越大图片越模糊。 |
-| standard | number | 是 | 正态分布的标准差。取值[1,50]<br/>s 越大图片越模糊。 |
+| 名称       | 类型     | 必填   | 描述                               |
+| -------- | ------ | ---- | -------------------------------- |
+| radius   | number | 是    | 模糊半径。取值[1,50]<br/>r 越大图片越模糊。     |
+| standard | number | 是    | 正态分布的标准差。取值[1,50]<br/>s 越大图片越模糊。 |
 
 ### bright
 
@@ -249,9 +279,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 亮度调整。0 表示原图亮度，小于 0 表示低于原图亮度，大于 0 表示高于原图亮度。取值[-100, 100] |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 亮度调整。0 表示原图亮度，小于 0 表示低于原图亮度，大于 0 表示高于原图亮度。取值[-100, 100] |
 
 ### contrast
 
@@ -261,9 +291,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 对比度调整。0 表示原图对比度，小于 0 表示低于原图对比度，大于 0 表示高于原图对比度。取值[-100, 100] |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 对比度调整。0 表示原图对比度，小于 0 表示低于原图对比度，大于 0 表示高于原图对比度。取值[-100, 100] |
 
 ### sharpen
 
@@ -273,9 +303,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 表示进行锐化处理。取值为锐化参数，参数越大，越清晰。取值[50, 399]。为达到较优效果，推荐取值为 100。 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 表示进行锐化处理。取值为锐化参数，参数越大，越清晰。取值[50, 399]。为达到较优效果，推荐取值为 100。 |
 
 ### format
 
@@ -285,9 +315,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | string | 是 | 指定输出的图片格式，可选`jpg`,`png`,`bmp`,`webp`,`gif` |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | string | 是    | 指定输出的图片格式，可选`jpg`,`png`,`bmp`,`webp`,`gif` |
 
 ### interlace
 
@@ -301,9 +331,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 1 表示保存成渐进显示的 jpg 格式<br/>0 表示保存成普通的 jpg 格式 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 1 表示保存成渐进显示的 jpg 格式<br/>0 表示保存成普通的 jpg 格式 |
 
 > 注意：此参数只有当效果图是 jpg 格式时才有意义 。
 
@@ -315,9 +345,9 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 决定图片的相对质量，对原图按照 q% 进行质量压缩。如果原图质量是 100%，使用 90q 会得到质量为 90％ 的图片；如果原图质量是 80%，使用 90q 会得到质量72%的图片。 <br/>只能在原图是 jpg 格式的图片上使用，才有相对压缩的概念。如果原图为 webp，那么相对质量就相当于绝对质量。 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 决定图片的相对质量，对原图按照 q% 进行质量压缩。如果原图质量是 100%，使用 90q 会得到质量为 90％ 的图片；如果原图质量是 80%，使用 90q 会得到质量72%的图片。 <br/>只能在原图是 jpg 格式的图片上使用，才有相对压缩的概念。如果原图为 webp，那么相对质量就相当于绝对质量。 |
 
 ### absoluteQuality
 
@@ -327,43 +357,59 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| value | number | 是 | 决定图片的绝对质量，把原图质量压到Q%，如果原图质量小于指定数字，则不压缩。如果原图质量是100%，使用”90Q”会得到质量90％的图片；如果原图质量是95%，使用“90Q”还会得到质量90%的图片；如果原图质量是80%，使用“90Q”不会压缩，返回质量80%的原图。 <br/>只能在保存格式为jpg/webp效果上使用，其他格式无效果。 如果同时指定了q和Q，按Q来处理。 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 决定图片的绝对质量，把原图质量压到Q%，如果原图质量小于指定数字，则不压缩。如果原图质量是100%，使用”90Q”会得到质量90％的图片；如果原图质量是95%，使用“90Q”还会得到质量90%的图片；如果原图质量是80%，使用“90Q”不会压缩，返回质量80%的原图。 <br/>只能在保存格式为jpg/webp效果上使用，其他格式无效果。 如果同时指定了q和Q，按Q来处理。 |
 
 ### watermark
 
 图片水印。水印操作可以在图片上设置另外一张图片做为水印。
 
-`watermark(x, y, image [, options])`
+`watermark(x, y, img [, options])`
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| x | number | 是 | 参数意义：水平边距, 就是距离图片边缘的水平距离， 这个参数只有当水印位置是左上，左中，左下， 右上，右中，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素（px） |
-| y | number | 是 | 参数意义：垂直边距, 就是距离图片边缘的垂直距离， 这个参数只有当水印位置是左上，中上， 右上，左下，中下，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素(px) |
-| image | object | 是 | AliImage 实例 |
-| options | object | 否 | 选项对象 |
+| 名称      | 类型     | 必填   | 描述                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| x       | number | 是    | 参数意义：水平边距, 就是距离图片边缘的水平距离， 这个参数只有当水印位置是左上，左中，左下， 右上，右中，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素（px） |
+| y       | number | 是    | 参数意义：垂直边距, 就是距离图片边缘的垂直距离， 这个参数只有当水印位置是左上，中上， 右上，左下，中下，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素(px) |
+| image   | object | 是    | AliImage 实例                              |
+| options | object | 否    | 选项对象                                     |
 
 ### options 对象属性
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| position | string | 参数意义：位置，水印打在图的位置，详情参考下方区域数值对应图。<br/>取值范围：[nw,north,ne,west,center,east,ne,south] |
+| 名称           | 类型     | 描述                                       |
+| ------------ | ------ | ---------------------------------------- |
+| position     | string | 参数意义：位置，水印打在图的位置，详情参考下方区域数值对应图。<br/>取值范围：[nw,north,ne,west,center,east,ne,south] |
 | transparency | number | 参数意义：透明度。<br/>默认值：100， 表示 100%（不透明） 取值范围: [0-100] |
-| voffset | number | 参数意义： 中线垂直偏移，当水印位置在左中，中部，右中时，可以指定水印位置根据中线往上或者往下偏移。 <br/>默认值：0 <br/>取值范围：[-1000, 1000] <br/>单位：像素(px) |
+| voffset      | number | 参数意义： 中线垂直偏移，当水印位置在左中，中部，右中时，可以指定水印位置根据中线往上或者往下偏移。 <br/>默认值：0 <br/>取值范围：[-1000, 1000] <br/>单位：像素(px) |
 
 #### 注意事项
 
 > 水平边距、垂直边距、中线垂直偏移不仅可以调节水印在图片中的位置，而且当图片存在多重水印时，也可以调节两张水印在图中的布局。
-用到的URL安全的Base64位编码可以参考文档下方的解释。
-区域数值以及每个区域对应的基准点如下图。
+> 用到的URL安全的Base64位编码可以参考文档下方的解释。
+> 区域数值以及每个区域对应的基准点如下图。
 
-| nw | north | ne |
-| :---: | :---: | :---: |
+|  nw  | north  |  ne  |
+| :--: | :----: | :--: |
 | west | center | east |
-| sw | south | se |
+|  sw  | south  |  se  |
+
+```javascript
+img('/path/to/background.png')
+  .watermask( null, 200,
+  	img('/path/to/headimg.jpg')
+      .resize(200, 200)
+      .circle(200), { position: 'center'}  
+  )
+  .watermask( null, null,
+    img('/path/to/qrcode.jpg')
+      .resize(200, 200), { position: 'south' }
+  )
+  .write('/path/to/save.png', err => {
+    if (!err) console.log('success')
+  })
+```
 
 ### drawText
 
@@ -373,23 +419,32 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| x | number | 是 | 参数意义：水平边距, 就是距离图片边缘的水平距离， 这个参数只有当水印位置是左上，左中，左下， 右上，右中，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素（px） |
-| y | number | 是 | 参数意义：垂直边距, 就是距离图片边缘的垂直距离， 这个参数只有当水印位置是左上，中上， 右上，左下，中下，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素(px) |
-| text | string | 是 | 文字内容 |
-| options | object | 否 | 选项对象 |
+| 名称      | 类型     | 必填   | 描述                                       |
+| ------- | ------ | ---- | ---------------------------------------- |
+| x       | number | 是    | 参数意义：水平边距, 就是距离图片边缘的水平距离， 这个参数只有当水印位置是左上，左中，左下， 右上，右中，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素（px） |
+| y       | number | 是    | 参数意义：垂直边距, 就是距离图片边缘的垂直距离， 这个参数只有当水印位置是左上，中上， 右上，左下，中下，右下才有意义<br/>默认值：10 <br/>取值范围：[0 – 4096] <br/>单位：像素(px) |
+| text    | string | 是    | 文字内容                                     |
+| options | object | 否    | 选项对象                                     |
 
 ### options 对象属性
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| position | string | 参数意义：位置，水印打在图的位置，详情参考下方区域数值对应图。<br/>取值范围：[nw,north,ne,west,center,east,ne,south] |
+| 名称           | 类型     | 描述                                       |
+| ------------ | ------ | ---------------------------------------- |
+| position     | string | 参数意义：位置，水印打在图的位置，详情参考下方区域数值对应图。<br/>取值范围：[nw,north,ne,west,center,east,ne,south] |
 | transparency | number | 参数意义：透明度。<br/>默认值：100， 表示 100%（不透明） 取值范围: [0-100] |
-| voffset | number | 参数意义： 中线垂直偏移，当水印位置在左中，中部，右中时，可以指定水印位置根据中线往上或者往下偏移。 <br/>默认值：0 <br/>取值范围：[-1000, 1000] <br/>单位：像素(px) |
-| shadow | number | 参数意义：文字水印的阴影透明度 <br/>取值范围：(0,100] |
-| rotate | number | 参数意义：文字顺时针旋转角度 <br/>取值范围：[0,360] |
-| fill | number | 参数意义：进行水印铺满的效果；<br/>取值范围：[0,1]，1表示铺满，0表示效果无效 |
+| voffset      | number | 参数意义： 中线垂直偏移，当水印位置在左中，中部，右中时，可以指定水印位置根据中线往上或者往下偏移。 <br/>默认值：0 <br/>取值范围：[-1000, 1000] <br/>单位：像素(px) |
+| shadow       | number | 参数意义：文字水印的阴影透明度 <br/>取值范围：(0,100]        |
+| rotate       | number | 参数意义：文字顺时针旋转角度 <br/>取值范围：[0,360]         |
+| fill         | number | 参数意义：进行水印铺满的效果；<br/>取值范围：[0,1]，1表示铺满，0表示效果无效 |
+
+```javascript
+img('/path/to/img.png')
+  .drawText(null, null, 'Hello World', { position: 'center' })
+  .drawText(null, 200, 'ok', { position: 'north' })
+  .write('/path/to/save.png', err => {
+    if (!err) console.log('success')
+  })
+```
 
 ### fill
 
@@ -397,9 +452,9 @@ const networkImg = img('https://path/to/resource.png')
 
 `fill(color)`
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| color | string | 是 | 参数意义：文字水印文字的颜色 <br/>参数的构成必须是：六个十六进制数 如：000000表示黑色。 000000每两位构成RGB颜色，FFFFFF表示的是白色 <br/>默认值：000000黑色 |
+| 名称    | 类型     | 必填   | 描述                                       |
+| ----- | ------ | ---- | ---------------------------------------- |
+| color | string | 是    | 参数意义：文字水印文字的颜色 <br/>参数的构成必须是：六个十六进制数 如：000000表示黑色。 000000每两位构成RGB颜色，FFFFFF表示的是白色 <br/>默认值：000000黑色 |
 
 ### font
 
@@ -407,21 +462,31 @@ const networkImg = img('https://path/to/resource.png')
 
 `font(name)`
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| name | string | 是 | 参数意义：表示文字水印的文字类型<br/>取值范围：见下表（文字类型编码对应表） <br/>默认值：wqy-zenhei<br/>可输入参数对应的中文 |
+| 名称   | 类型     | 必填   | 描述                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| name | string | 是    | 参数意义：表示文字水印的文字类型<br/>取值范围：见下表（文字类型编码对应表） <br/>默认值：wqy-zenhei<br/>可输入参数对应的中文 |
 
 ### 文字类型编码对应表
 
-| 参数值 | 中文意思 |
-| --- | --- |
-| wqy-zenhei | 文泉驿正黑 |
-| wqy-microhei | 文泉微米黑 |
-| fangzhengshusong | 方正书宋 |
-| fangzhengkaiti | 方正楷体 |
-| fangzhengheiti | 方正黑体 |
-| fangzhengfangsong | 方正仿宋 |
+| 参数值               | 中文意思              |
+| ----------------- | ----------------- |
+| wqy-zenhei        | 文泉驿正黑             |
+| wqy-microhei      | 文泉微米黑             |
+| fangzhengshusong  | 方正书宋              |
+| fangzhengkaiti    | 方正楷体              |
+| fangzhengheiti    | 方正黑体              |
+| fangzhengfangsong | 方正仿宋              |
 | droidsansfallback | DroidSansFallback |
+
+```javascript
+img('/path/to/img.png')
+  .font('方正楷体')
+  .drawText(null, null, '鹏', { position: 'center' })
+  .stream()
+  .pipe(
+	require('fs').createWriteStream('/path/to/save.png')
+  )
+```
 
 ### fontSize
 
@@ -429,9 +494,9 @@ const networkImg = img('https://path/to/resource.png')
 
 `fontSize(size)`
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| size | number | 是 | 参数意义：文字水印文字大小(px) <br/>取值范围：(0，1000] <br/>默认值：40 |
+| 名称   | 类型     | 必填   | 描述                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| size | number | 是    | 参数意义：文字水印文字大小(px) <br/>取值范围：(0，1000] <br/>默认值：40 |
 
 ### stream
 
@@ -441,6 +506,16 @@ const networkImg = img('https://path/to/resource.png')
 
 返回图片流
 
+```javascript
+const app = require('express')()
+app.get('/images/test.png', (req, res) => {
+  img('/path/to/save.png')
+    .drawText(null, null, new Date().toString(), { position: 'center' })
+    .stream()
+    .pipe(res)
+})
+```
+
 ### toBuffer
 
 获取图片Buffer
@@ -449,10 +524,21 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 回调函数内参数
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| err | object | 错误对象 |
+| 名称      | 类型     | 描述         |
+| ------- | ------ | ---------- |
+| err     | object | 错误对象       |
 | buffers | buffer | 图片buffer数据 |
+
+```javascript
+img('/path/to/img.png')
+  .resize(400, 400)
+  .toBuffer((err, chunks) => {
+  	if (err) {
+      return console.error(err)
+    }
+    require('fs').writeFileSync('/path/to/save.png', chunks)
+  })
+```
 
 ### write
 
@@ -462,13 +548,22 @@ const networkImg = img('https://path/to/resource.png')
 
 ### 参数
 
-| 名称 | 类型 | 必填 | 描述 |
-| --- | --- | --- | --- |
-| fullpath | string | 是 | 写入路径 |
-| callback | function | 是 | 回调函数 |
+| 名称       | 类型       | 必填   | 描述   |
+| -------- | -------- | ---- | ---- |
+| fullpath | string   | 是    | 写入路径 |
+| callback | function | 是    | 回调函数 |
 
 ### 回调函数内参数
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| err | object | 错误对象 |
+| 名称   | 类型     | 描述   |
+| ---- | ------ | ---- |
+| err  | object | 错误对象 |
+
+```javascript
+img('/path/to/img.png')
+  .format('jpg')
+  .quality(50)
+  .write('/path/to/compress.jpg', err => {
+  	if (!err) console.log('success')  
+  })
+```
