@@ -56,32 +56,42 @@ const networkImg = img('https://path/to/resource.png')
 
 - 图片缩放
   - [resize 图片缩放](#resize)
+
 - 图片裁剪
   - [circle 内切圆](#circle)
   - [crop 裁剪](#crop)
   - [indexCropX 索引切割(横向)](#indexcropx)
   - [indexCropY 索引切割(纵向)](#indexcropy)
   - [roundedCorners 圆角矩形](#roundedcorners)
+
 - 图片旋转
   - [autoOrient 自适应方向](#autoorient)
   - [rotate 旋转](#rotate)
+
 - 图片效果
   - [blur 模糊效果](#blur)
   - [bright 亮度](#bright)
   - [contrast 对比度](#contrast)
   - [sharpen 锐化](#sharpen)
+
 - 格式转换
   - [format 格式转换](#format)
   - [interlace 渐进显示](#interlace)
   - [quality 质量变换(相对)](#quality)
   - [absoluteQuality 质量变换(绝对)](#absolutequality)
+
 - 图片水印
   - [watermark 图片水印](#watermark)
   - [drawText 绘制文字](#drawtext)
   - [fill 填充颜色](#fill)
   - [font 文字字体](#font)
   - [fontSize 文字大小](#fontsize)
+
 - 生成
+
+  - [save 将处理后的图片保存阿里云OSS，获取保存后的图片URL。](#save)
+
+
   - [stream 返回图片流](#stream)
   - [toBuffer 取得图片Buffer对象](#tobuffer)
   - [write 写入本地文件](#write)
@@ -497,6 +507,20 @@ img('/path/to/img.png')
 | 名称   | 类型     | 必填   | 描述                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
 | size | number | 是    | 参数意义：文字水印文字大小(px) <br/>取值范围：(0，1000] <br/>默认值：40 |
+
+### save
+
+将处理后的图片保存阿里云OSS，获取保存后的图片URL。
+
+```javascript
+img('/path/to/resource.jpg').circle(500).save('cloud.jpg', (err, url) => {
+  if (err) {
+    return console.error(err)
+  }
+  console.log(url)
+  // http://[bucket].[region].aliyuncs.com/cloud.jpg
+})
+```
 
 ### stream
 

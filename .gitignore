@@ -1,1 +1,3 @@
 node_modules/
+test/oss.config.js
+test/*.jpg
