@@ -89,12 +89,10 @@ const readableImg = img(http.get('http://path/to/resource.png'))
   - [fontSize 文字大小](#fontsize)
 
 - 生成
-
   - [save 将处理后的图片保存阿里云OSS，获取保存后的图片URL。](#save)
-
-    - [stream 返回图片流](#stream)
-    - [toBuffer 取得图片Buffer对象](#tobuffer)
-    - [write 写入本地文件](#write)
+  - [stream 返回图片流](#stream)
+  - [toBuffer 取得图片Buffer对象](#tobuffer)
+  - [write 写入本地文件](#write)
 
 ### resize
 
