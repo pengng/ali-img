@@ -45,11 +45,12 @@ img('test.png')
 
 ## img 工厂方法
 
-可传入`本地图片`或`网络图片`路径，返回`Img`实例。
+可传入`本地图片`或`网络图片`路径或 `Readable` 实例，返回`Img`实例。
 
 ```javascript
 const localImg = img('/path/to/resource.png')
 const networkImg = img('https://path/to/resource.png')
+const readableImg = img(http.get('http://path/to/resource.png'))
 ```
 
 ### Img 实例方法
@@ -91,10 +92,9 @@ const networkImg = img('https://path/to/resource.png')
 
   - [save 将处理后的图片保存阿里云OSS，获取保存后的图片URL。](#save)
 
-
-  - [stream 返回图片流](#stream)
-  - [toBuffer 取得图片Buffer对象](#tobuffer)
-  - [write 写入本地文件](#write)
+    - [stream 返回图片流](#stream)
+    - [toBuffer 取得图片Buffer对象](#tobuffer)
+    - [write 写入本地文件](#write)
 
 ### resize
 

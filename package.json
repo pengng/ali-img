@@ -1,6 +1,6 @@
 {
   "name": "ali-img",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Ali cloud image processing tool package",
   "main": "index.js",
   "scripts": {},
@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/pengng/ali-img#readme",
   "dependencies": {
-    "mime": "^2.0.0"
+    "file-type": "^7.4.0"
   }
 }
