@@ -1,25 +1,30 @@
 {
-  "name": "ali-img",
-  "version": "0.2.4",
-  "description": "Ali cloud image processing tool package",
-  "main": "index.js",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pengng/ali-img.git"
-  },
-  "keywords": [
-    "aliyun",
-    "image",
-    "processing"
-  ],
-  "author": "yupeng.kuo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pengng/ali-img/issues"
-  },
-  "homepage": "https://github.com/pengng/ali-img#readme",
-  "dependencies": {
-    "file-type": "^7.4.0"
-  }
+    "name": "ali-img",
+    "version": "1.0.0",
+    "description": "Ali cloud image processing tool package",
+    "main": "index.js",
+    "scripts": {
+        "test": "mocha -t 5000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pengng/ali-img.git"
+    },
+    "keywords": [
+        "aliyun",
+        "image",
+        "processing"
+    ],
+    "author": "yupeng.kuo",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/pengng/ali-img/issues"
+    },
+    "homepage": "https://github.com/pengng/ali-img#readme",
+    "dependencies": {
+        "file-type": "^7.4.0"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0"
+    }
 }

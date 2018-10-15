@@ -1,0 +1,7 @@
+{
+	"accessKeyId": "测试用的ID",
+	"accessKeySecret": "测试用的密钥",
+	"region": "oss-cn-shenzhen",
+	"bucket": "测试用的bucket"
+	"filePath": "测试用的图片文件路径"
+}
