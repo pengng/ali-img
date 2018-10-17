@@ -53,7 +53,10 @@ describe('单元测试', function () {
         return img(filePath).format('jpg').absQual(30).write(__dirname + '/test_absqual_30.jpg')
     })
     it('测试 watermark()', function () {
-        return img(filePath).watermark('Hello world').write(__dirname + '/test_watermark_hello_world.png')
+        return img(filePath).watermark('Hello world').write(__dirname + '/test_watermark_text.png')
+    })
+    it('测试 watermark()', function () {
+        return img(filePath).watermark(img(filePath).resize({width: 200}).format('jpg')).format('jpg').write(__dirname + '/test_watermark_image.jpg')
     })
     it('测试 fill()', function () {
         return img(filePath).fill('ff0000').watermark('Hello world').write(__dirname + '/test_fill_ff0000.png')
