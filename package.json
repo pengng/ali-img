@@ -1,7 +1,7 @@
 {
     "name": "ali-img",
-    "version": "1.0.1",
-    "description": "Ali cloud image processing tool package",
+    "version": "1.0.2",
+    "description": "阿里云OSS图片处理工具",
     "main": "index.js",
     "scripts": {
         "test": "mocha -t 5000"
@@ -12,8 +12,9 @@
     },
     "keywords": [
         "aliyun",
-        "image",
-        "processing"
+        "阿里云",
+        "OSS",
+        "图片处理"
     ],
     "author": "yupeng.kuo",
     "license": "ISC",
