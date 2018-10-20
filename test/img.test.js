@@ -74,16 +74,16 @@ describe('单元测试', function () {
         return img(filePath).textRotate(90).watermark('Hello world').write(__dirname + '/test_textRotate_90.png')
     })
     it('测试 save()', function () {
-        return img(filePath).watermark('Hello world').save('test_save.png')
+        return img(filePath).save('test_save.png')
     })
     it('测试 stream()', function (done) {
         let writable = fs.createWriteStream(__dirname + '/test_stream.png')
         writable.on('error', assert.ifError).on('finish', done)
-        let readable = img(filePath).watermark('Hello world').stream()
+        let readable = img(filePath).stream()
         readable.on('error', assert.ifError)
         readable.pipe(writable)
     })
     it('测试 toBuffer()', function () {
-        return img(filePath).watermark('Hello world').toBuffer()
+        return img(filePath).toBuffer()
     })
 })
