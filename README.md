@@ -347,10 +347,10 @@ img('/path/to/img.jpg').absQual(80).write('/path/to/save.jpg')
 
 ```javascript
 // 文本水印
-img('/path/to/img.png').watermask('Hello World').write('/path/to/save.png')
+img('/path/to/img.png').watermark('Hello World').write('/path/to/save.png')
 
 // 图片水印
-img('/path/to/background.png').watermask(img('/path/to/headimg.jpg')).write('/path/to/save.png')
+img('/path/to/background.png').watermark(img('/path/to/headimg.jpg')).write('/path/to/save.png')
 ```
 
 

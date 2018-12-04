@@ -1,6 +1,6 @@
 {
     "name": "ali-img",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "阿里云OSS图片处理工具",
     "main": "index.js",
     "scripts": {
