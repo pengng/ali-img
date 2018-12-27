@@ -51,7 +51,7 @@ let img = new AliImg({
 ```javascript
 const localImg = img('/path/to/resource.png')
 const networkImg = img('https://path/to/resource.png')
-const readableImg = img(http.get('http://path/to/resource.png'))
+const readableImg = img(fs.createReadStream('/path/to/resource.png'))
 ```
 
 
@@ -439,8 +439,8 @@ img('/path/to/img.png').textRotate(90)
 将处理后的图片保存阿里云OSS，获取保存后的图片URL
 
 ```javascript
-// http://[bucket].[region].aliyuncs.com/cloud.jpg
 let url = await img('/path/to/resource.jpg').save('cloud.jpg')
+// http://[bucket].[region].aliyuncs.com/cloud.jpg
 ```
 
 

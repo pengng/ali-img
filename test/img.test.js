@@ -7,6 +7,9 @@ const AliImg = require('../index')
 const img = new AliImg(config)
 
 describe('单元测试', function () {
+    it('测试 img()', function () {
+        return img(fs.createReadStream(filePath)).write(__dirname + '/test_input_readable.png')
+    })
     it('测试 resize()', function () {
         return img(filePath).resize({ width: 200 }).write(__dirname + '/test_resize_200.png')
     })
