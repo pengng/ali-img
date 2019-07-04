@@ -1,6 +1,6 @@
 {
     "name": "ali-img",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "阿里云OSS图片处理工具",
     "main": "index.js",
     "scripts": {
@@ -14,7 +14,21 @@
         "aliyun",
         "阿里云",
         "OSS",
-        "图片处理"
+        "图片处理",
+        "水印",
+        "裁剪",
+        "缩放",
+        "旋转",
+        "转换",
+        "jpg",
+        "png",
+        "svg",
+        "gif",
+        "jpeg",
+        "模糊",
+        "格式",
+        "文字",
+        "颜色"
     ],
     "author": "yupeng.kuo",
     "license": "ISC",
