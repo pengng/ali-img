@@ -37,7 +37,7 @@
     },
     "homepage": "https://github.com/pengng/ali-img#readme",
     "dependencies": {
-        "file-type": "^7.4.0"
+        "file-type": "^16.5.4"
     },
     "devDependencies": {
         "mocha": "^5.2.0"
